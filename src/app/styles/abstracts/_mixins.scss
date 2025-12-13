@@ -152,7 +152,7 @@
 }
 @mixin display-lg {
     @include size-token(display-lg);
-    @include type-style(variables.$ff-sans, variables.$weight-light, variables.$lh-100);
+    @include type-style(variables.$ff-sans, variables.$weight-medium, variables.$lh-100);
 
      span {
         @include size-token(display-xl);
