@@ -1,0 +1,65 @@
+@use '../../styles/abstracts/variables' as variables;
+@use '../../styles/abstracts/mixins' as mixins;
+
+.textBlock {
+    @include mixins.container;
+    background: variables.$bg-dark;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12rem;
+    background: variables.$bg-tertiary;
+    position: relative;
+    padding:variables.$padding-desktop 0;
+
+    .row {
+        @include mixins.grid-row;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 60px;
+        align-items: flex-start;
+
+        p {
+            @include mixins.body;
+            color: variables.$color-text-inverse;
+            grid-column: 8 / span 4;
+
+            .word {
+                opacity: 0.4;
+                display: inline-block;
+                margin-right: 0.25em;
+                transition: opacity 0.2s;
+            }
+
+            &.large {
+                @include mixins.body-lead;
+                margin-bottom: 1rem;
+                grid-column: 2 / span 7;
+            }
+        }
+        .smallImage{
+            grid-column: 1 / span 4;
+            position: absolute;
+            width:575px;
+            margin-top:-4rem;
+
+            video {
+                 mix-blend-mode: lighten; 
+                 width:100%;
+                 height: 100%;
+                 border-radius: 1rem;
+                 border:1px solid variables.$color-border-cta;
+                 padding:.5rem;
+            }
+        }
+        .largeMedia{
+            grid-column: 4 / span 9;
+            position: relative;
+            z-index: 2;
+        }
+    }
+}

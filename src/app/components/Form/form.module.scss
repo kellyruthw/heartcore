@@ -1,0 +1,118 @@
+@use '../../styles/abstracts/variables' as variables;
+@use '../../styles/abstracts/mixins' as mixins;
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+
+    .contactForm {
+        width: 100%;
+        display: flex;
+        gap: 3rem;
+        flex-direction: column;
+
+        @include mixins.respond(mobile) {
+            gap: 1.5rem;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+            width: 100%;
+
+            @include mixins.respond(tablet) {
+                gap: 1.5rem;
+            }
+
+            @include mixins.respond(mobile) {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .field {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: .5rem;
+
+                label {
+                    @include mixins.labelBold;
+                    color: variables.$color-text-primary;
+                }
+
+                input,
+                textArea {
+                    @include mixins.body-sm;
+                    color: variables.$color-text-primary;
+                    background: transparent;
+                    border: 0;
+                    border-bottom: 1px solid variables.$bg-dark;
+                    padding: 1rem 0;
+
+                    &:placeholder {
+                        color: rgba(variables.$color-text-primary, 0.6);
+                    }
+
+                    &:focus {
+                        outline: none;
+                        border-bottom: 1px solid variables.$color-pink-500;
+                    }
+                }
+
+                textArea {
+                    resize: vertical;
+                    min-height: 100px;
+                }
+
+                span {
+                    @include mixins.body-xs;
+                    color: variables.$color-pink-500;
+                }
+
+            }
+
+            .successMessage {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            p {
+                @include mixins.body-sm;
+                color: variables.$color-text-primary;
+            }
+
+            .button {
+                @include mixins.button;
+                display: inline-flex;
+                align-items: center;
+                text-decoration: none;
+                padding: 1.5rem 2rem;
+                border-radius: 80px;
+                min-width: 160px;
+                text-align: center;
+                justify-content: center;
+                transition: .2s all;
+                color: variables.$color-text-inverse;
+                border: 0;
+                border-bottom: 1px solid variables.$color-border-regular;
+                background-color: transparent;
+                cursor: pointer;
+                background: variables.$bg-tertiary;
+                backdrop-filter: blur(20px);
+
+                &:hover {
+                    background: variables.$color-pink-500;
+                    box-shadow: 1px 5px 7px 0px rgba(variables.$color-pink-500, .1);
+                    border-bottom: 1px solid variables.$color-border-cta;
+                }
+            }
+
+
+        }
+    }
+
+}

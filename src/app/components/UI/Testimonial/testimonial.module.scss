@@ -1,0 +1,41 @@
+@use '../../../styles/abstracts/variables' as variables;
+@use '../../../styles/abstracts/mixins' as mixins;
+
+.testimonial {
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    gap:variables.$gap-sm;
+
+    &.pink-100 {
+        color: variables.$color-pink-100;
+    }
+
+    &.teal-100 {
+        color: variables.$color-teal-100;
+    }
+
+    &.orange-100 {
+        color: variables.$color-orange-100;
+    }
+
+    .quote {
+        @include mixins.quote;
+    }
+
+    .clientInfo {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+
+        .name {
+            @include mixins.body;
+        }
+
+        .company {
+            @include mixins.label;
+        }
+    }
+}

@@ -1,0 +1,19 @@
+@use '../../../styles/abstracts/variables' as variables;
+@use '../../../styles/abstracts/mixins' as mixins;
+
+.linkCta {
+    @include mixins.labelBold;
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+
+    img {
+        transition: all 0.3s;
+    }
+
+    &:hover {
+        img {
+            transform: translate(4px, -4px);
+        }
+    }
+}

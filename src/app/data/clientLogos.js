@@ -1,0 +1,16 @@
+export default [
+    '/svgs/logos/logo-48north.svg',
+    '/svgs/logos/logo-beeya.svg',
+    '/svgs/logos/logo-fiton.svg',
+    '/svgs/logos/logo-harland-weho.svg',
+    '/svgs/logos/logo-hawke-media.svg',
+    '/svgs/logos/logo-musicforbusiness.svg',
+    '/svgs/logos/logo-palmilla-reserve.svg',
+    '/svgs/logos/logo-samesurf.svg',
+    '/svgs/logos/logo-tac.svg',
+    '/svgs/logos/logo-taos.svg',
+    '/svgs/logos/logo-the-famous-group.svg',
+    '/svgs/logos/logo-the-fileist.svg',
+    '/svgs/logos/logo-uptempo.svg',
+    '/svgs/logos/logo-palette-town.svg',
+];

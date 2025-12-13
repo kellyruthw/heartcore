@@ -1,0 +1,26 @@
+@use '../../../styles/abstracts/variables' as variables;
+@use '../../../styles/abstracts/mixins' as mixins;
+
+.dragCursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    @include mixins.gradient-brand(45deg);
+    color: variables.$color-text-inverse;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    @include mixins.label;
+    user-select: none;
+    cursor: none;
+   
+        span{
+            margin: 0 8px;
+        }
+}

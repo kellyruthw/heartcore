@@ -1,0 +1,141 @@
+/* ---- DESIGN TOKENS ---- */
+
+/* Viewport anchors for fluid calc */
+$min-vw: 550px;
+$max-vw: 1728px;
+
+$min-vw-base: 550;
+$max-vw-base: 1728;
+
+/* Fonts */
+$ff-serif: "quincy-cf", serif;
+$ff-sans: "Plus Jakarta Sans", sans-serif;
+
+/* Weights */
+$weight-thin: 100;
+$weight-light: 300;
+$weight-regular: 400;
+$weight-medium: 400;
+$weight-bold: 700;
+
+/* Line-heights */
+$lh-100: 1;
+$lh-130: 1.3;
+$lh-150: 1.5;
+
+/* Letter-spacing (10% ≈ 0.1em, 15% ≈ 0.15em) */
+$ls-10: 0.1em;
+
+/* ---- SIZE TOKENS (min/max in px) ---- */
+$sizes: (
+  display-3xl: (min: 64, max: 140),
+  display-2xl: (min: 64, max: 115),
+  display-xl: (min: 40, max: 85),
+  display-lg: (min: 32, max: 70),
+  display-md: (min: 36, max: 50),
+
+  lead: (min: 26, max: 32),
+  body: (min: 18, max: 22),
+  body-sm: (min: 16, max: 18),
+  body-xs: (min: 14, max: 16),
+
+  subHeading: (min: 24, max: 24),
+  label: (min: 14, max: 16)
+);
+
+$roles: (
+  display: display-2xl,
+  h2: display-xl,
+  h3: display-lg
+);
+
+/* Grid */
+$grid-columns: 12;
+$grid-max-width: $min-vw;
+$grid-container-padding: 0;
+$grid-gutter: 60px;
+
+/* ---- COLORS  ---- */
+
+// BRAND COLORS
+// ---------------------------------------------
+// Heartcore Studio — Brand Color Variables
+// ---------------------------------------------
+
+// Neutrals & Base
+$color-navy-900: #101527;
+$color-navy-800: #22336C;
+
+$color-grey-900: #0B0D16;
+$color-grey-700: #4C5563;
+$color-grey-500: #A9B2C1;
+$color-grey-200: #E7EAED;
+$color-grey-100: #F5F6F7;
+$color-white: #FFFFFF;
+
+// Brand Accents
+$color-orange-500: #F87C4C; // Energy / Warmth
+$color-orange-100: #FFF5EC;
+$color-pink-500: #EB3F6D; // Expression / Emotion
+$color-pink-200: #FBD9E2;
+$color-pink-100: #FDECF1;
+$color-teal-500: #00B3C4; // Clarity / Balance
+$color-teal-100: #E6F8FA;
+
+// Gradient Stops
+$color-gradient-brand-start: #F87C4C;
+$color-gradient-brand-end: #EB3F6D;
+
+$color-gradient-energy-start: #00B3C4;
+$color-gradient-energy-end: #F8B24C; // adjusted tone for warmth blend
+
+$color-gradient-depth-start: $color-navy-900;
+$color-gradient-depth-end: $color-navy-800;
+
+
+
+
+// Background Colors
+$bg-primary: $color-white;
+$bg-secondary: $color-grey-100;
+$bg-tertiary: $color-navy-800;
+$bg-dark: $color-grey-900;
+$bg-cta: $color-teal-500;
+$bg-lt-grey: $color-grey-200;
+$bg-overlay: rgba($color-navy-800, 0.85);
+
+// Text Colors
+$color-text-primary: $color-navy-800;
+$color-text-secondary: $color-grey-700;
+$color-text-inverse: $color-white;
+
+// Border Colors
+$color-border-white: $color-white;
+$color-border-regular: $color-grey-200;
+$color-border-cta: $color-pink-500;
+
+// Breakpoints
+$breakpoint-mobile: 500px;
+$breakpoint-portrait: 768px;
+$breakpoint-tablet: 1024px; // Flip to mobile
+$breakpoint-small-laptop: 1280px;
+$breakpoint-laptop: 1440px; // Small Desktop
+$breakpoint-desktop: 1728px; // Desktop
+
+// Header Heights
+$header-height-sm: 75px;
+$header-height-lg: 97px;
+$header-height-xl: 97px;
+$header-height-2xl: 145px;
+
+// Section Padding
+$padding-none: 0;
+$padding-mobile: 80px; // 768px and below
+$padding-tablet: 100px; // Tablet
+$padding-small-laptop: 150px; // Small laptop
+$padding-laptop: 150px; // Small desktop
+$padding-desktop: 180px; // Desktop
+
+// Gap
+$gap-lg: 60px;
+$gap-sm: 2rem;

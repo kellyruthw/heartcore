@@ -1,0 +1,50 @@
+@use '../../styles/abstracts/variables' as variables;
+@use '../../styles/abstracts/mixins' as mixins;
+
+
+
+.loaderRoot {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    @include mixins.gradient-depth;
+
+    .wipePanel {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        @include mixins.gradient-brand; // or a solid brand color
+    }
+
+    .centerWrap {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+
+        .spinner {
+            width: 96px;
+            height: 96px;
+            display: grid;
+            place-items: center;
+            animation: spin 1.2s linear infinite;
+            will-change: transform;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    }
+}
+
+/* Reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+    .spinner {
+        animation: none;
+    }
+}

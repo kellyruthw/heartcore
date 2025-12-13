@@ -1,0 +1,87 @@
+@use '../../styles/abstracts/variables' as variables;
+@use '../../styles/abstracts/mixins' as mixins;
+
+.imageCopy {
+    @include mixins.container;
+    background: variables.$bg-primary;
+    padding: variables.$padding-desktop 0;
+
+
+    @include mixins.respond(desktop) {
+        padding: variables.$padding-laptop 0;
+    }
+
+    @include mixins.respond(small-laptop) {
+        padding: variables.$padding-tablet 0;
+    }
+
+    @include mixins.respond(portrait) {
+        padding: variables.$padding-mobile 0;
+    }
+
+
+    .row {
+        @include mixins.grid-row;
+        align-items: flex-end;
+        justify-content: space-between;
+        max-width: none;
+        padding: 0 60px;
+        position: relative;
+
+        @include mixins.respond(small-laptop) {
+            padding: 0;
+        }
+
+        .copy {
+            @include mixins.grid-col(4);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: variables.$gap-sm;
+            max-width: 525px;
+
+            @include mixins.respond(desktop) {
+                @include mixins.grid-col(4);
+            }
+
+            @include mixins.respond(small-laptop) {
+                @include mixins.grid-col(5);
+            }
+
+            @include mixins.respond(portrait) {
+                @include mixins.grid-col(12);
+            }
+
+            h2 {
+                @include mixins.display-lg;
+                color: variables.$color-text-primary;
+            }
+
+            p {
+                @include mixins.body;
+                color: variables.$color-text-primary;
+                line-height: 1.6;
+            }
+        }
+
+        .imageContainer {
+            @include mixins.grid-col(7);
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1050 / 480;
+            overflow: hidden;
+
+            @include mixins.respond(portrait) {
+                @include mixins.grid-col(12);
+                margin-top:variables.$gap-lg;
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+
+            }
+        }
+    }
+}

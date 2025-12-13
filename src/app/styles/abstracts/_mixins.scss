@@ -1,0 +1,282 @@
+@use "sass:map";
+@use "./variables" as variables;
+
+/* helpers */
+@function _strip-unit($v) {
+    @return $v / ($v * 0 + 1);
+}
+
+// @mixin fluid-type($min-size, $max-size) {
+//     font-size: clamp(#{$min-size}px,
+//         calc(#{$min-size}px + (#{$max-size} - #{$min-size}) * ((100vw - #{variables.$min-vw}) / (#{variables.$max-vw-base} - #{variables.$min-vw-base}))),
+//         #{$max-size}px);
+// }
+
+@mixin fluid-type($min-size, $max-size, $minViewport: variables.$min-vw-base, $maxViewport: variables.$max-vw-base) {
+  // Ensure the middle value is in vw, with a px intercept
+  $minPx: _strip-unit($min-size);
+  $maxPx: _strip-unit($max-size);
+  $minVw: _strip-unit($minViewport);
+  $maxVw: _strip-unit($maxViewport);
+
+  // slope in vw units, intercept in px
+  $slope: (($maxPx - $minPx) / ($maxVw - $minVw)) * 100; // unitless number for vw
+  $intercept: $minPx - ($slope * $minVw / 100);           // px
+
+  font-size: clamp(#{$minPx}px, calc(#{$slope}vw + #{$intercept}px), #{$maxPx}px);
+}
+
+// Use the updated fluid-type inside size-token
+@mixin size-token($token) {
+  $size-map: map.get(variables.$sizes, $token);
+  $min: map.get($size-map, min);
+  $max: map.get($size-map, max);
+
+  @include fluid-type($min, $max); // now outputs clamp(minpx, m vw + b px, maxpx)
+}
+
+@mixin type-style($family, $weight, $lh, $ls: 0, $uppercase: false) {
+    font-family: $family;
+    font-weight: $weight;
+    line-height: $lh;
+    letter-spacing: $ls;
+
+    @if $uppercase {
+        text-transform: uppercase;
+    }
+}
+
+// @mixin size-token($token) {
+//     $size-map: map.get(variables.$sizes, $token);
+//     $min: map.get($size-map, min);
+//     $max: map.get($size-map, max);
+
+//     @include fluid-type($min, $max);
+// }
+
+@mixin size-role($role) {
+    $token: map.get(variables.$roles, $role);
+
+    @if $token ==null {
+        @error "size-role(): `#{$role}` not found in variables.$roles";
+    }
+
+    @include size-token($token);
+}
+
+/* Layout/grid */
+@mixin container {
+    margin: 0 auto;
+    padding-left: variables.$grid-container-padding;
+    padding-right: variables.$grid-container-padding;
+
+    @include respond(mobile) {
+        padding: 0 2rem;
+    }
+}
+
+@mixin grid-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: calc(variables.$grid-gutter / -2);
+    margin-right: calc(variables.$grid-gutter / -2);
+    max-width: variables.$max-vw;
+    margin: 0 auto;
+}
+
+@mixin grid-col($span) {
+    flex: 0 0 calc((#{$span} / variables.$grid-columns) * 100%);
+    max-width: calc((#{$span} / variables.$grid-columns) * 100%);
+    padding-left: calc(variables.$grid-gutter / 2);
+    padding-right: calc(variables.$grid-gutter / 2);
+}
+
+// ---------------------------------------------
+// Gradient Mixins
+// ---------------------------------------------
+
+// Brand Gradient (Orange → Pink)
+@mixin gradient-brand($angle: 45deg) {
+    background: linear-gradient($angle, variables.$color-gradient-brand-start, variables.$color-gradient-brand-end);
+}
+
+// Energy Gradient (Teal → Warm Gold)
+@mixin gradient-energy($angle: 45deg) {
+    background: linear-gradient($angle, variables.$color-gradient-energy-start, variables.$color-gradient-energy-end);
+}
+
+// Depth Gradient (Dark Navy → Blue)
+@mixin gradient-depth($angle: 45deg) {
+    background: linear-gradient($angle, variables.$color-gradient-depth-start, variables.$color-gradient-depth-end);
+}
+
+@mixin copy-gradient($angle: 180deg) {
+    background: linear-gradient($angle, variables.$color-navy-800 0%, variables.$color-navy-800 100%);
+}
+
+// ---------------------------------------------
+// Typography Mixins
+// ---------------------------------------------
+@mixin display-3xl {
+    @include size-token(display-3xl);
+    @include type-style(variables.$ff-sans, variables.$weight-regular, variables.$lh-100);
+
+    span {
+        @include size-token(display-2xl);
+        @include type-style(variables.$ff-serif, variables.$weight-thin, variables.$lh-100);
+        font-style: italic;
+    }
+}
+
+
+@mixin display-2xl {
+    @include size-token(display-2xl);
+    @include type-style(variables.$ff-sans, variables.$weight-regular, variables.$lh-100);
+
+    span {
+        @include size-token(display-2xl);
+        @include type-style(variables.$ff-serif, variables.$weight-thin, variables.$lh-100);
+        font-style: italic;
+    }
+}
+
+@mixin display-xl {
+    @include size-token(display-xl);
+    @include type-style(variables.$ff-sans, variables.$weight-light, variables.$lh-100);
+
+    span {
+        @include size-token(display-2xl);
+        @include type-style(variables.$ff-serif, variables.$weight-thin, variables.$lh-100);
+        font-style: italic;
+    }
+}
+@mixin display-lg {
+    @include size-token(display-lg);
+    @include type-style(variables.$ff-sans, variables.$weight-light, variables.$lh-100);
+
+     span {
+        @include size-token(display-xl);
+        @include type-style(variables.$ff-serif, variables.$weight-thin, variables.$lh-100);
+        font-style: italic;
+    }
+}
+
+@mixin display-md {
+    @include size-token(display-md);
+    @include type-style(variables.$ff-sans, variables.$weight-medium, variables.$lh-100);
+}
+
+
+@mixin body-xl {
+    @include size-token(body-lg);
+    @include type-style(variables.$ff-sans, variables.$weight-light, variables.$lh-150);
+}
+
+@mixin body {
+    @include size-token(body);
+    @include type-style(variables.$ff-sans, variables.$weight-light, variables.$lh-150);
+}
+
+@mixin body-lead {
+    @include size-token(lead);
+    @include type-style(variables.$ff-sans, variables.$weight-regular, variables.$lh-130);
+}
+
+@mixin body-sm {
+    @include size-token(body-sm);
+    @include type-style(variables.$ff-sans, variables.$weight-light, variables.$lh-100);
+}
+
+@mixin body-xs {
+    @include size-token(body-xs);
+    @include type-style(variables.$ff-sans, variables.$weight-light, variables.$lh-100);
+}
+
+@mixin link-lg {
+    @include size-token(lead);
+    @include type-style(variables.$ff-sans, variables.$weight-light, variables.$lh-130);
+    text-decoration: none;
+    color: variables.$color-text-primary;
+}
+
+// Links, buttons, form label, table headings
+@mixin labelBold {
+    @include size-token(label);
+    @include type-style(variables.$ff-sans, variables.$weight-bold, variables.$lh-100, variables.$ls-10, true);
+    text-decoration: none;
+}
+
+@mixin label {
+    @include size-token(label);
+    @include type-style(variables.$ff-sans, variables.$weight-regular, variables.$lh-100, variables.$ls-10, true);
+    text-decoration: none;
+}
+
+@mixin button {
+    @include size-token(label);
+    @include type-style(variables.$ff-sans, variables.$weight-bold, variables.$lh-150, variables.$ls-10, $uppercase: true);
+    text-decoration: none;
+    padding: 1rem 1.5rem;
+    color: variables.$color-text-primary;
+}
+
+// Serif Headings
+@mixin subHeading {
+    @include size-token(subHeading);
+    @include type-style(variables.$ff-serif, variables.$weight-regular, variables.$lh-150, false);
+    font-style: italic;
+}
+
+@mixin quote {
+    @include size-token(lead);
+    @include type-style(variables.$ff-serif, variables.$weight-regular, variables.$lh-100, false);
+}
+
+
+@mixin carouselCaption {
+    @include size-token(carousel-caption);
+    @include type-style(variables.$ff-serif, variables.$weight-light, variables.$lh-150, false);
+}
+
+@mixin cardHeading {
+    @include size-token(card);
+    @include type-style(variables.$ff-serif, variables.$weight-light, variables.$lh-150, false);
+    text-decoration: none;
+}
+
+@mixin footerText {
+    @include size-token(footer);
+    @include type-style(variables.$ff-sans, variables.$weight-light, variables.$lh-100, false);
+}
+
+@mixin respond($breakpoint) {
+    $size: null;
+
+    @if $breakpoint ==mobile {
+        $size: variables.$breakpoint-mobile;
+    }
+
+    @else if $breakpoint ==portrait {
+        $size: variables.$breakpoint-portrait;
+    }
+
+    @else if $breakpoint ==tablet {
+        $size: variables.$breakpoint-tablet;
+    }
+
+    @else if $breakpoint ==small-laptop {
+        $size: variables.$breakpoint-small-laptop;
+    }
+
+    @else if $breakpoint ==laptop {
+        $size: variables.$breakpoint-laptop;
+    }
+
+    @else if $breakpoint ==desktop {
+        $size: variables.$breakpoint-desktop;
+    }
+
+    @media (max-width: $size) {
+        @content;
+    }
+}

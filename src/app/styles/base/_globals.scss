@@ -1,0 +1,70 @@
+@use '../abstracts/variables' as variables;
+@use "./../abstracts/mixins" as mixins;
+
+html {
+    background: variables.$bg-primary;
+}
+
+.bg-brown,
+.bg-cta {
+    @include mixins.bg-dark;
+
+    a {
+        color: variables.$color-text-inverse;
+    }
+}
+
+.bg-cream {
+    @include mixins.bg-tertiary;
+
+    a {
+        color: variables.$color-text-primary;
+    }
+}
+
+.bg-white {
+    @include mixins.bg-primary;
+
+    +.bg-white {
+        padding-top: 0;
+    }
+
+    a {
+        color: variables.$color-text-primary;
+    }
+}
+
+.bg-offWhite {
+    @include mixins.bg-tertiary;
+
+    a {
+        color: variables.$color-text-primary;
+    }
+}
+
+.bg-green {
+    @include mixins.bg-cta;
+    padding: variables.$padding-desktop 0;
+
+    @include mixins.respond(laptop) {
+        padding: variables.$padding-laptop 0;
+    }
+
+    @include mixins.respond(small-laptop) {
+        padding: variables.$padding-small-laptop 0;
+    }
+    @include mixins.respond(tablet) {
+        padding: variables.$padding-tablet 0;
+    }
+    @include mixins.respond(portrait) {
+        padding: 0;
+    }
+
+    a {
+        color: variables.$color-text-inverse;
+    }
+}
+
+.pin-spacer {
+    width: auto !important
+}

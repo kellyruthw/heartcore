@@ -1,0 +1,89 @@
+@use '../../styles/abstracts/variables' as variables;
+@use '../../styles/abstracts/mixins' as mixins;
+
+.videoCta {
+    @include mixins.container;
+    background: variables.$bg-tertiary;
+    padding-top: 2rem;
+    position: relative;
+
+    @include mixins.respond(mobile) {
+        padding: 4rem 0 0 0;
+    }
+
+    .videoContainer {
+        width: 100%;
+        z-index: 0;
+        height: 500px;
+        overflow: hidden;
+
+        @include mixins.respond(mobile) {
+            height: 400px;
+        }
+
+        .overlay {
+            background: linear-gradient(360deg, rgba(variables.$bg-tertiary, 0) 0%, variables.$bg-tertiary 100%);
+            position: absolute;
+            width: 100%;
+            height: 500px;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+
+            @include mixins.respond(mobile) {
+                height: 400px;
+            }
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; // fill container, cropping as needed
+            object-position: left bottom; // show more of the bottom part
+            mix-blend-mode: lighten;
+        }
+    }
+
+    .row {
+        @include mixins.grid-row;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 2;
+
+
+
+        .copy {
+            @include mixins.grid-col(6);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: variables.$gap-lg;
+            position: absolute;
+            top: 0rem;
+
+            @include mixins.respond(small-laptop) {
+                @include mixins.grid-col(8);
+            }
+
+            @include mixins.respond(portrait) {
+                @include mixins.grid-col(10);
+            }
+
+            @include mixins.respond(mobile) {
+                @include mixins.grid-col(12);
+            }
+
+            h2 {
+                @include mixins.display-lg;
+                color: variables.$color-text-inverse;
+                text-align: center;
+            }
+
+            .buttonContainer {
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+}

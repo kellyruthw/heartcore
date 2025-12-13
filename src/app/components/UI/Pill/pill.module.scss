@@ -1,0 +1,19 @@
+@use '../../../styles/abstracts/variables' as variables;
+@use '../../../styles/abstracts/mixins' as mixins;
+
+.pill{
+    display: inline-block;
+    align-items: center;
+    text-align: center;
+    padding:.5rem 1rem;
+    border-radius: 60px;
+    color:variables.$color-text-inverse;
+    @include mixins.label;
+
+    &.white{
+        background:rgba(variables.$bg-primary, 0.2);
+    }
+    &.pink{
+        background: rgba(variables.$color-pink-500, 0.2);
+    }
+}

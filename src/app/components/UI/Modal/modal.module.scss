@@ -1,0 +1,62 @@
+@use '../../../styles/abstracts/variables' as variables;
+@use '../../../styles/abstracts/mixins' as mixins;
+
+.modal {
+  position: fixed;
+  right: 60px;
+  bottom: 0;
+  transform: translate(0, 100%);
+  opacity: 0;
+  z-index: 1001;
+  background: variables.$bg-primary;
+  width: 100%;
+  max-width: 900px;
+  padding: 2.5rem 2.5rem 3.75rem 2.5rem;
+  border-radius: 2.5rem;
+  transition: transform 300ms ease, opacity 300ms ease;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  max-height: 90vh;
+
+  @include mixins.respond(tablet) {
+    right: 2rem;
+    padding: 2rem;
+    width: calc(100% - 4rem);
+  }
+
+  @include mixins.respond(mobile) {
+    right: 0;
+    padding: 2rem;
+    width: 100%;
+    border-radius: 0;
+    top: 0;
+    height: 100vh;
+    max-height: none;
+    overflow: scroll;
+  }
+
+  .row {
+    @include mixins.grid-row;
+    width: 100%;
+
+    &:first-of-type {
+      justify-content: flex-end;
+    }
+
+    h3 {
+      color: variables.$color-text-primary;
+      @include mixins.body-lead;
+    }
+  }
+
+  &.open {
+    transform: translate(0, -60px); // slide up into place
+    opacity: 1; // fade in
+
+    @include mixins.respond(mobile) {
+      transform: translate(0, 0); // slide up into place
+    }
+  }
+
+}

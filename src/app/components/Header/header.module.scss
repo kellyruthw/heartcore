@@ -1,0 +1,182 @@
+@use '../../styles/abstracts/variables' as variables;
+@use '../../styles/abstracts/mixins' as mixins;
+
+.header {
+    position: relative;
+    z-index: 100;
+    position: fixed;
+    padding: 1rem 0;
+    width: 100%;
+    transition: .2s all;
+
+    &.active {
+        background: rgba(27, 38, 78, 0.8);
+        backdrop-filter: blur(20px);
+    }
+
+    .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+        width: 100%;
+
+        .logo {
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.4s cubic-bezier(.77, 0, .18, 1), transform 0.4s cubic-bezier(.77, 0, .18, 1);
+            will-change: opacity, transform;
+
+            @include mixins.respond(mobile) {
+                width: 140px;
+            }
+
+            &.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+        .menuButton {
+            @include mixins.button;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: inherit;
+            text-decoration: none;
+            gap: 1rem;
+            background-color: rgba(variables.$bg-primary, 0.2);
+            padding: 2rem;
+            border-radius: 60px;
+            transition: .2s all;
+
+            @include mixins.respond(mobile) {
+                padding: 1.5rem;
+            }
+
+            &:hover,
+            &.active {
+                background-color: rgba(variables.$bg-primary, 1);
+
+                .menuText {
+                    color: variables.$color-text-primary;
+
+                }
+
+                .iconMenu {
+                    .bar {
+                        background: variables.$bg-tertiary;
+                    }
+                }
+            }
+
+
+            .menuText {
+                @include mixins.labelBold;
+                color: variables.$color-text-inverse;
+                transition: .2s all;
+
+                 @include mixins.respond(mobile) {
+                        display: none;
+                    }
+            }
+
+            .iconMenu {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: .5rem;
+                position: relative;
+                transition: all 0.3s;
+
+                .bar {
+                    display: block;
+                    height: 4px;
+                    border-radius: 5px;
+                    width: 42px;
+                    background: variables.$bg-primary;
+                    transition: all 0.3s;
+                    position: relative;
+                }
+
+                &.open .bar:first-child {
+                    transform: rotate(45deg) translate(4.5px, 4.5px);
+                }
+
+                &.open .bar:last-child {
+                    transform: rotate(-45deg) translate(4.5px, -4.5px);
+                }
+            }
+        }
+    }
+
+}
+
+
+.menuPanel {
+    position: fixed;
+    top: 0;
+    right: 32px;
+    width: 320px;
+    background: variables.$bg-primary;
+    transition: all 0.4s cubic-bezier(.77, 0, .18, 1);
+    transform: translateY(0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem 2rem;
+    z-index: 99;
+    pointer-events: none;
+    opacity: 0;
+    border-radius: 32px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+
+    &.open {
+        transform: translateY(120px);
+        pointer-events: auto;
+        opacity: 1;
+    }
+
+    nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            margin-bottom: 2rem;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            a {
+                @include mixins.body-lead;
+                text-decoration: none;
+                font-size: 2rem;
+                color: variables.$color-text-primary;
+                position: relative;
+
+                &:before {
+                    content: '';
+                    width:0;
+                    height: 2px;
+                    background: variables.$color-pink-500;
+                    position: absolute;
+                    bottom: -4px;
+                    left: 0;
+                    transition: .2s all;
+                }
+
+                &:hover {
+                    &:before {
+                        content: '';
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

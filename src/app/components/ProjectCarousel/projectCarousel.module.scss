@@ -1,0 +1,284 @@
+@use '../../styles/abstracts/variables' as variables;
+@use '../../styles/abstracts/mixins' as mixins;
+
+.projectCarousel {
+    @include mixins.container;
+    background: variables.$bg-dark;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    // gap: 25vh;
+    position: relative;
+    height: 100vh;
+    z-index: 1000;
+
+    @include mixins.respond(tablet) {
+        height: auto;
+        padding: 0;
+        z-index: 2;
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: variables.$bg-tertiary;
+        z-index: -1;
+
+        img {
+            opacity: 0.05;
+        }
+    }
+
+    .row {
+        @include mixins.grid-row;
+        height: auto;
+    }
+
+    .project {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        will-change: transform, opacity, border-radius;
+
+        @include mixins.respond(tablet) {
+            height: auto;
+            position: relative;
+        }
+
+        &:first-child {
+            position: relative; // First slide establishes height
+        }
+
+
+        .slideContent {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            width: 100%;
+            height: 100%;
+            transition: opacity 0.3s, transform 0.3s;
+            will-change: opacity, transform;
+
+            @include mixins.respond(tablet) {
+                /* Let tablet/mobile be auto height */
+                min-height: auto;
+                height: auto;
+            }
+
+
+            .projectHeader {
+                width: 100%;
+                justify-content: space-between;
+                padding: 1rem 60px;
+                border-bottom: 1px solid variables.$color-border-cta;
+
+                @include mixins.respond(tablet) {
+                    padding: 2rem 2rem;
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+
+                h4 {
+                    @include mixins.subHeading;
+                    color: variables.$color-text-inverse;
+                }
+
+                .pagination {
+                    display: flex;
+                    gap: 1rem;
+                    position: relative;
+                    align-items: center;
+                    gap: 2rem;
+
+                    @include mixins.respond(tablet) {
+                      margin-top:1rem;
+                    }
+
+                    a {
+                        @include mixins.label;
+                        color: variables.$color-text-inverse;
+                    }
+
+                    .scrollbar {
+                        background: rgba(variables.$bg-primary, 0.4);
+                        position: relative;
+                        width: 110px;
+                        top: auto;
+                        bottom: auto;
+                        height: 10px;
+
+                        @include mixins.respond(tablet) {
+                            display: none;
+                        }
+
+                        >div {
+                            background: variables.$bg-primary;
+                            height: 6px;
+                            top: 2px;
+
+                        }
+                    }
+                }
+            }
+
+            .carouselContainer {
+                flex: 1 1 auto;
+                min-height: 0;
+                width: 100%;
+                padding: 0 0 0 60px;
+
+                @include mixins.respond(tablet) {
+                    padding: 2rem 0 2rem 60px;
+                }
+
+                @include mixins.respond(mobile) {
+                    padding: 2rem 0 2rem 2rem;
+                }
+
+                .slide {
+                    // @include mixins.grid-row;
+                    // width: 60vw !important;
+                    padding: 0;
+                    max-height: 50vh;
+                    overflow-y: none;
+
+                    // @include mixins.respond(desktop) {
+                    //     @include mixins.grid-col(7);
+                    // }
+
+                    .imageContainer {
+                        // width: 50%;
+                        // @include mixins.grid-col(7);
+                        // width:85%;
+                        width: 100%;
+                        // aspect-ratio: 1050 / 685;
+
+                        img,
+                        video {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+                    }
+                }
+            }
+
+            .copyContainer {
+                width: 100%;
+                flex: 0 0 auto;
+                display: flex;
+                min-height: clamp(220px, 28vh, 380px);
+                flex-direction: column;
+                padding: 60px;
+                align-items: flex-start;
+                border-top: 1px solid variables.$color-border-cta;
+                // @include mixins.copy-gradient(180deg);
+                // position: absolute;
+                bottom: 0;
+                left: 0;
+                height: auto;
+
+                @include mixins.respond(tablet) {
+                    position: relative;
+                    padding: variables.$gap-lg;
+                    min-height: auto;
+                }
+
+                @include mixins.respond(mobile) {
+                    padding: 2.5rem 2rem;
+                }
+
+
+                .pillContainer {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+
+                    @include mixins.respond(mobile) {
+                        flex-direction: column;
+                        align-items: flex-start;
+                    }
+                }
+
+                .copy {
+                    display: grid;
+                    grid-template-columns: repeat(12, 1fr);
+                    gap: variables.$gap-sm;
+
+                    h3 {
+                        @include mixins.display-md;
+                        color: variables.$color-text-inverse;
+                        margin: 1rem 0;
+                        grid-column: 1 / span 4;
+
+                        @include mixins.respond(desktop) {
+                            grid-column: 1 / span 5;
+                        }
+
+                        @include mixins.respond(tablet) {
+                            grid-column: 1 / span 12;
+                            margin-top: 2rem;
+                        }
+                    }
+
+                    p {
+                        @include mixins.body;
+                        color: variables.$color-text-inverse;
+                        grid-column: 5 / span 7;
+                        margin-top: 1rem;
+
+                        @include mixins.respond(desktop) {
+                            grid-column: 6 / span 8;
+                        }
+
+                        @include mixins.respond(tablet) {
+                            grid-column: 1 / span 12;
+                            margin-top: 0;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+    .row {
+        @include mixins.grid-row;
+        // height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: none;
+
+        p {
+            @include mixins.display-xl;
+            color: variables.$color-text-inverse;
+        }
+
+        .imageSwiper {
+            @include mixins.grid-col(12);
+
+
+
+
+            .imageSlide {
+                grid-column: span 8;
+                position: relative;
+                width: 100%;
+                height: auto;
+                width: 60%;
+
+                .imageContainer {
+                    width: 100%;
+                }
+            }
+
+
+        }
+    }
+}

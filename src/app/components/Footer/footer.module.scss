@@ -1,0 +1,29 @@
+@use '../../styles/abstracts/variables' as variables;
+@use '../../styles/abstracts/mixins' as mixins;
+
+.footer {
+    @include mixins.container;
+    position: absolute;
+    bottom: 1rem;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .row {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(27, 38, 78, 0.6);
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        padding: 1rem;
+        border-radius: 2rem;
+        width: auto;
+
+        p {
+            @include mixins.body-xs;
+            color: variables.$color-text-inverse;
+        }
+    }
+}
