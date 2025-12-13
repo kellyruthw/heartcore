@@ -26,6 +26,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.page{
+  overflow:hidden;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;

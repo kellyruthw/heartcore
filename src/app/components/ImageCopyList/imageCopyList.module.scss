@@ -139,6 +139,10 @@
                 @include mixins.grid-col(12);
                 margin-top: variables.$gap-lg;
             }
+            @include mixins.respond(mobile) {
+                @include mixins.grid-col(12);
+                margin-top: 2rem;
+            }
 
             img {
                 width: 100%;
