@@ -1,13 +1,12 @@
 'use client'
 
 import Image from 'next/image';
-import styles from './HomeHero.module.scss';
+import styles from './homeHero2.module.scss';
 import logomark from '/public/svgs/logomark.svg';
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import LinkCta from '../UI/LinkCta/LinkCta';
 import { useModal } from '../UI/Modal/ModalProvider';
 import Button from '../UI/Button/Button';
 

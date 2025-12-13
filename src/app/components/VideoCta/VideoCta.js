@@ -1,10 +1,7 @@
 'use client'
-import { useState } from "react";
 import Button from "../UI/Button/Button";
 import VideoDiv from "../UI/Video/VideoDiv";
 import styles from './videoCta.module.scss';
-import Modal from "../UI/Modal/Modal";
-import Form from "../Form/Form";
 import { useModal } from "../UI/Modal/ModalProvider";
 
 const VideoCta = () => {
