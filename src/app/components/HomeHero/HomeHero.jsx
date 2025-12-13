@@ -37,37 +37,37 @@ const HomeHero = ({ id }) => {
         // return () => window.removeEventListener('page-loader:done', onLoaderDone);
     }, []);
 
-    useGSAP(() => {
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: sectionRef.current,
-                start: 'top top',
-                end: '+=180%',
-                scrub: true,
-                pin: true,
-                anticipatePin: 1,
+    // useGSAP(() => {
+    //     gsap.timeline({
+    //         scrollTrigger: {
+    //             trigger: sectionRef.current,
+    //             start: 'top top',
+    //             end: '+=180%',
+    //             scrub: true,
+    //             pin: true,
+    //             anticipatePin: 1,
 
-            }
-        })
-            .fromTo(
-                firstHeadlineRef.current,
-                { opacity: 1, y: "0" },
-                { opacity: 0, y: "100", ease: "none", duration: 0.2 },
-                0.2 // start at 10%
-            )
-            .fromTo(
-                secondHeadlineRef.current,
-                { opacity: 0, y: "100" },
-                { opacity: 1, y: "0", ease: "none", duration: 0.3 },
-                0.3 // start at 20%
-            )
-            .fromTo(
-                logomarkRef.current,
-                { x: "0", rotate: "0deg", y: "0" },
-                { x: "100vw", rotate: "90deg", ease: "none", y: "-600" },
-                0.0 // start at 10%
-            );
-    }, []);
+    //         }
+    //     })
+    //         .fromTo(
+    //             firstHeadlineRef.current,
+    //             { opacity: 1, y: "0" },
+    //             { opacity: 0, y: "100", ease: "none", duration: 0.2 },
+    //             0.2 // start at 10%
+    //         )
+    //         .fromTo(
+    //             secondHeadlineRef.current,
+    //             { opacity: 0, y: "100" },
+    //             { opacity: 1, y: "0", ease: "none", duration: 0.3 },
+    //             0.3 // start at 20%
+    //         )
+    //         .fromTo(
+    //             logomarkRef.current,
+    //             { x: "0", rotate: "0deg", y: "0" },
+    //             { x: "100vw", rotate: "90deg", ease: "none", y: "-600" },
+    //             0.0 // start at 10%
+    //         );
+    // }, []);
 
     return (
         <section id={id} className={styles.homeHero} ref={sectionRef}>
