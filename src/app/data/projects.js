@@ -11,17 +11,14 @@ export default [
       {
         mediaType: "video",
         src: "/videos/harland/harland-home-scroll-1.mp4",
-        poster: "/images/harland/harland-home.jpg"
       },
       {
         mediaType: "video",
         src: "/videos/harland/harland-map.mp4",
-        poster: "/images/harland/harland-home.jpg"
       },
       {
         mediaType: "video",
         src: "/videos/harland/harland-home-scroll-2.mp4",
-        poster: "/images/harland/harland-home.jpg"
       },
 
     ],
