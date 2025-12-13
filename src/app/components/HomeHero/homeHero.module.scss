@@ -98,17 +98,10 @@
             p {
                 @include mixins.label;
                 color: variables.$color-text-inverse;
-                // text-align: right;
-                // border-bottom: 1px solid variables.$color-border-regular;
-                // padding-top: .5rem;
-                // display: flex;
-                // justify-content: space-between;
-                // background: rgba(27, 38, 78, 0.2);
-                // backdrop-filter: blur(20px);
-                // border-radius: 2.5rem;
-                // padding: 2rem;
-                // box-shadow: 1px 5px 7px 0px rgba(255, 255, 255, .1);
-                // align-items: center;
+
+                @include mixins.respond(mobile) {
+                    margin-top:1rem;
+                }
             }
 
             .buttonContainer {

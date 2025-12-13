@@ -19,15 +19,6 @@ const HomeHero = ({ id }) => {
     const firstHeadlineRef = useRef(null);
     const secondHeadlineRef = useRef(null);
 
-    const [isTablet, setIsTablet] = useState(false);
-
-    useEffect(() => {
-        const checkTablet = () => setIsTablet(window.innerWidth <= 1280);
-        checkTablet();
-        window.addEventListener('resize', checkTablet);
-        return () => window.removeEventListener('resize', checkTablet);
-    }, []);
-
     const { openModal } = useModal();
 
     useGSAP(() => {
@@ -81,7 +72,7 @@ const HomeHero = ({ id }) => {
             </div>
             <div className={styles.row}>
                 <div className={`${styles.copy} ${styles.display}`} ref={firstHeadlineRef}>
-                    <h1 ref={firstHeadlineRef}>Heartcore is a <br /><span>boutique digital studio</span><br />specializing in high-end web experiences.</h1>
+                    <h1>Heartcore is a <br /><span>boutique digital studio</span><br />specializing in high-end web experiences.</h1>
 
                     <div className={styles.buttonContainer}>
                         <p>Uniquely designed. Expertly built.</p>

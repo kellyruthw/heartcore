@@ -1,21 +1,21 @@
 @use "sass:map";
+@use "sass:math";
 @use "./variables" as variables;
 
 /* helpers */
 @function _strip-unit($v) {
-    @return $v / ($v * 0 + 1);
+  @return math.div($v, ($v * 0 + 1)); // replace slash division
 }
 
 @mixin fluid-type($min-size, $max-size, $minViewport: variables.$min-vw-base, $maxViewport: variables.$max-vw-base) {
-  // Ensure the middle value is in vw, with a px intercept
   $minPx: _strip-unit($min-size);
   $maxPx: _strip-unit($max-size);
   $minVw: _strip-unit($minViewport);
   $maxVw: _strip-unit($maxViewport);
 
-  // slope in vw units, intercept in px
-  $slope: (($maxPx - $minPx) / ($maxVw - $minVw)) * 100; // unitless number for vw
-  $intercept: $minPx - ($slope * $minVw / 100);           // px
+  // replace slash division with math.div
+  $slope: math.div(($maxPx - $minPx), ($maxVw - $minVw)) * 100;
+  $intercept: $minPx - (math.div($slope * $minVw, 100));
 
   font-size: clamp(#{$minPx}px, calc(#{$slope}vw + #{$intercept}px), #{$maxPx}px);
 }
@@ -40,14 +40,6 @@
     }
 }
 
-// @mixin size-token($token) {
-//     $size-map: map.get(variables.$sizes, $token);
-//     $min: map.get($size-map, min);
-//     $max: map.get($size-map, max);
-
-//     @include fluid-type($min, $max);
-// }
-
 @mixin size-role($role) {
     $token: map.get(variables.$roles, $role);
 
@@ -70,19 +62,20 @@
 }
 
 @mixin grid-row {
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: calc(variables.$grid-gutter / -2);
-    margin-right: calc(variables.$grid-gutter / -2);
-    max-width: variables.$max-vw;
-    margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: calc(#{math.div(variables.$grid-gutter, -2)});
+  margin-right: calc(#{math.div(variables.$grid-gutter, -2)});
+  max-width: variables.$max-vw;
+  margin: 0 auto;
 }
 
 @mixin grid-col($span) {
-    flex: 0 0 calc((#{$span} / variables.$grid-columns) * 100%);
-    max-width: calc((#{$span} / variables.$grid-columns) * 100%);
-    padding-left: calc(variables.$grid-gutter / 2);
-    padding-right: calc(variables.$grid-gutter / 2);
+  $ratio: math.div($span, variables.$grid-columns);
+  flex: 0 0 calc(#{$ratio} * 100%);
+  max-width: calc(#{$ratio} * 100%);
+  padding-left: calc(#{math.div(variables.$grid-gutter, 2)});
+  padding-right: calc(#{math.div(variables.$grid-gutter, 2)});
 }
 
 // ---------------------------------------------

@@ -74,17 +74,6 @@ const Header = () => {
             >
                 <nav>
                     <ul>
-                        <li>
-                            <Link
-                                href="#"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    setOpen(false);
-                                    window.scrollTo({ top: 0, behavior: 'instant' });
-                                }}>
-                                Home
-                            </Link>
-                        </li>
                         <li><Link href="#work" onClick={() => setOpen(false)}>Work</Link></li>
                         <li><Link href="#services" onClick={() => setOpen(false)}>Services</Link></li>
                         <li><Link href="#testimonials" onClick={() => setOpen(false)}>Testimonials</Link></li>

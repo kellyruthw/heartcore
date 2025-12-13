@@ -5,43 +5,49 @@ import Image from 'next/image';
 import styles from './pageLoader.module.scss';
 import logomark from '/public/svgs/logomark.svg';
 
-// ...existing code...
+// ...existing imports...
 export default function PageLoader() {
-    const [phase, setPhase] = useState('spin'); // 'spin' -> 'wipe' -> 'done'
+  const [phase, setPhase] = useState('spin'); // 'spin' -> 'wipe' -> 'done'
 
-    useEffect(() => {
-        const t1 = setTimeout(() => setPhase('wipe'), 500);
-        const t2 = setTimeout(() => {
-            setPhase('done');
-            window.dispatchEvent(new CustomEvent('page-loader:done'));
-        }, 500 + 700);
-        return () => { clearTimeout(t1); clearTimeout(t2); };
-    }, []);
+  useEffect(() => {
+    const minSpin = 2000;  // ensure 2s spin
+    const wipeDur = 700;
 
-    if (phase === 'done') return null;
+    const t1 = setTimeout(() => setPhase('wipe'), minSpin);
+    const t2 = setTimeout(() => {
+      setPhase('done');
+      window.dispatchEvent(new CustomEvent('page-loader:done'));
+      // After DOM settles, refresh ScrollTrigger
+      setTimeout(() => {
+        try { ScrollTrigger.refresh(); } catch {}
+      }, 50);
+    }, minSpin + wipeDur);
 
-    return (
-        <AnimatePresence>
-            <div className={styles.loaderRoot}>
-                {phase === 'spin' && (
-                    <div className={styles.centerWrap}>
-                        <div className={styles.spinner}>
-                            <Image src={logomark} alt="Loading" width={96} height={96} priority />
-                        </div>
-                    </div>
-                )}
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, []);
 
-                {phase === 'wipe' && (
-                    <motion.div
-                        className={styles.wipePanel}
-                        initial={{ y: '-100%' }}           // start above viewport
-                        animate={{ y: '100%' }}            // move down through viewport
-                        exit={{ y: '100%' }}
-                        transition={{ duration: 0.7, ease: 'easeInOut' }}
-                    />
-                )}
+  if (phase === 'done') return null;
+
+  return (
+    <AnimatePresence>
+      <div className={styles.loaderRoot}>
+        {phase === 'spin' && (
+          <div className={styles.centerWrap}>
+            <div className={styles.spinner}>
+              <Image src={logomark} alt="Loading" width={96} height={96} priority />
             </div>
-        </AnimatePresence>
-    );
+          </div>
+        )}
+        {phase === 'wipe' && (
+          <motion.div
+            className={styles.wipePanel}
+            initial={{ y: '-100%' }}
+            animate={{ y: '100%' }}
+            exit={{ y: '100%' }}
+            transition={{ duration: 0.7, ease: 'easeInOut' }}
+          />
+        )}
+      </div>
+    </AnimatePresence>
+  );
 }
-// ...existing code...
