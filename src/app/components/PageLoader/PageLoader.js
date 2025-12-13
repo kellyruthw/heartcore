@@ -7,17 +7,17 @@ import logomark from '/public/svgs/logomark.svg';
 
 // ...existing imports...
 export default function PageLoader() {
-  const [phase, setPhase] = useState('spin'); // 'spin' -> 'wipe' -> 'done'
+  const [phase, setPhase] = useState('spin'); 
 
   useEffect(() => {
-    const minSpin = 2000;  // ensure 2s spin
+    const minSpin = 2000;  
     const wipeDur = 700;
 
     const t1 = setTimeout(() => setPhase('wipe'), minSpin);
     const t2 = setTimeout(() => {
       setPhase('done');
       window.dispatchEvent(new CustomEvent('page-loader:done'));
-      // After DOM settles, refresh ScrollTrigger
+
       setTimeout(() => {
         try { ScrollTrigger.refresh(); } catch {}
       }, 50);

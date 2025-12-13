@@ -23,14 +23,18 @@ const HomeHero = ({ id }) => {
 
     useGSAP(() => {
 
-        const onLoaderDone = () => {
-            const tl = gsap.timeline();
-            tl.fromTo(firstHeadlineRef.current, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.0, ease: 'power2.out' }, 0)
-                .fromTo(logomarkRef.current, { opacity: 0 }, { opacity: 1, duration: 1.0, ease: 'power2.out' }, 0.3);
-        };
+        const tl = gsap.timeline();
+        tl.fromTo(firstHeadlineRef.current, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.0, ease: 'power2.out' }, 0)
+            .fromTo(logomarkRef.current, { opacity: 0 }, { opacity: 1, duration: 1.0, ease: 'power2.out' }, 0.3);
 
-        window.addEventListener('page-loader:done', onLoaderDone);
-        return () => window.removeEventListener('page-loader:done', onLoaderDone);
+        // const onLoaderDone = () => {
+        //     const tl = gsap.timeline();
+        //     tl.fromTo(firstHeadlineRef.current, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.0, ease: 'power2.out' }, 0)
+        //         .fromTo(logomarkRef.current, { opacity: 0 }, { opacity: 1, duration: 1.0, ease: 'power2.out' }, 0.3);
+        // };
+
+        // window.addEventListener('page-loader:done', onLoaderDone);
+        // return () => window.removeEventListener('page-loader:done', onLoaderDone);
     }, []);
 
     useGSAP(() => {

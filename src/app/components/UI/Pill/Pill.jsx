@@ -2,7 +2,7 @@ import styles from './pill.module.scss';
 
 const Pill = ({ label, color }) => {
     return (
-        <span className={`${styles.pill} ${styles[color]}`}>{label}</span>
+        <li className={`${styles.pill} ${styles[color]}`}>{label}</li>
     );
 };
 export default Pill;

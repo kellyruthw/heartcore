@@ -5,7 +5,7 @@ import LinkCta from '../LinkCta/LinkCta';
 export default function Modal({ open, onClose, children }) {
 
   return (
-    <div className={`${styles.modal} ${open ? styles.open : ''}`} role="dialog" aria-modal="true">
+    <div className={`${styles.modal} ${open ? styles.open : ''}`} role="dialog" aria-modal="true" aria-label="popup modal">
       <div className={styles.row}>
           <LinkCta href="#" value="Close" className={styles.closeButton} onClick={(e) => { e.preventDefault(); onClose(); }} aria-label="Close modal" />
       </div>
