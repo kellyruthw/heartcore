@@ -21,53 +21,49 @@ const HomeHero = ({ id }) => {
 
     const { openModal } = useModal();
 
-    // useGSAP(() => {
+    useGSAP(() => {
 
-    //     const tl = gsap.timeline();
-    //     tl.fromTo(firstHeadlineRef.current, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.0, ease: 'power2.out' }, 0)
-    //         .fromTo(logomarkRef.current, { opacity: 0 }, { opacity: 1, duration: 1.0, ease: 'power2.out' }, 0.3);
+        const onLoaderDone = () => {
+            const tl = gsap.timeline();
+            tl.fromTo(firstHeadlineRef.current, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.0, ease: 'power2.out' }, 0)
+                .fromTo(logomarkRef.current, { opacity: 0 }, { opacity: 1, duration: 1.0, ease: 'power2.out' }, 0.3);
+        };
 
-    //     const onLoaderDone = () => {
-    //         const tl = gsap.timeline();
-    //         tl.fromTo(firstHeadlineRef.current, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.0, ease: 'power2.out' }, 0)
-    //             .fromTo(logomarkRef.current, { opacity: 0 }, { opacity: 1, duration: 1.0, ease: 'power2.out' }, 0.3);
-    //     };
+        window.addEventListener('page-loader:done', onLoaderDone);
+        return () => window.removeEventListener('page-loader:done', onLoaderDone);
+    }, []);
 
-    //     window.addEventListener('page-loader:done', onLoaderDone);
-    //     return () => window.removeEventListener('page-loader:done', onLoaderDone);
-    // }, []);
+    useGSAP(() => {
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: sectionRef.current,
+                start: 'top top',
+                end: '+=180%',
+                scrub: true,
+                pin: true,
+                anticipatePin: 1,
 
-    // useGSAP(() => {
-    //     gsap.timeline({
-    //         scrollTrigger: {
-    //             trigger: sectionRef.current,
-    //             start: 'top top',
-    //             end: '+=180%',
-    //             scrub: true,
-    //             pin: true,
-    //             anticipatePin: 1,
-
-    //         }
-    //     })
-    //         .fromTo(
-    //             firstHeadlineRef.current,
-    //             { opacity: 1, y: "0" },
-    //             { opacity: 0, y: "100", ease: "none", duration: 0.2 },
-    //             0.2 // start at 10%
-    //         )
-    //         .fromTo(
-    //             secondHeadlineRef.current,
-    //             { opacity: 0, y: "100" },
-    //             { opacity: 1, y: "0", ease: "none", duration: 0.3 },
-    //             0.3 // start at 20%
-    //         )
-    //         .fromTo(
-    //             logomarkRef.current,
-    //             { x: "0", rotate: "0deg", y: "0" },
-    //             { x: "100vw", rotate: "90deg", ease: "none", y: "-600" },
-    //             0.0 // start at 10%
-    //         );
-    // }, []);
+            }
+        })
+            .fromTo(
+                firstHeadlineRef.current,
+                { opacity: 1, y: "0" },
+                { opacity: 0, y: "100", ease: "none", duration: 0.2 },
+                0.2 // start at 10%
+            )
+            .fromTo(
+                secondHeadlineRef.current,
+                { opacity: 0, y: "100" },
+                { opacity: 1, y: "0", ease: "none", duration: 0.3 },
+                0.3 // start at 20%
+            )
+            .fromTo(
+                logomarkRef.current,
+                { x: "0", rotate: "0deg", y: "0" },
+                { x: "100vw", rotate: "90deg", ease: "none", y: "-600" },
+                0.0 // start at 10%
+            );
+    }, []);
 
     return (
         <section id={id} className={styles.homeHero} ref={sectionRef}>

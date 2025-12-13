@@ -9,7 +9,7 @@ import VideoCta from "./components/VideoCta/VideoCta";
 export default function Home() {
   return (
     <div className="page">
-      {/* <PageLoader /> */}
+      <PageLoader />
       <main className="main">
         <HomeHero id="home"/>
         <ProjectCarousel id="work"/>
