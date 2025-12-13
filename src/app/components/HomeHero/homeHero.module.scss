@@ -17,8 +17,12 @@
         @include mixins.grid-row;
         padding: 100px 0;
         justify-content: flex-end;
-        // height: 100%;
+        height: 100%;
+
+        @include mixins.respond(mobile) {
+            height:auto;
             align-items: flex-start;
+        }
     }
 
     .logomark {
@@ -76,8 +80,9 @@
                 padding: 0;
                 gap: 2rem;
             }
+
             @include mixins.respond(mobile) {
-               height:auto;
+                height: auto;
             }
 
 

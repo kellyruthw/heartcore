@@ -6,12 +6,6 @@
     @return $v / ($v * 0 + 1);
 }
 
-// @mixin fluid-type($min-size, $max-size) {
-//     font-size: clamp(#{$min-size}px,
-//         calc(#{$min-size}px + (#{$max-size} - #{$min-size}) * ((100vw - #{variables.$min-vw}) / (#{variables.$max-vw-base} - #{variables.$min-vw-base}))),
-//         #{$max-size}px);
-// }
-
 @mixin fluid-type($min-size, $max-size, $minViewport: variables.$min-vw-base, $maxViewport: variables.$max-vw-base) {
   // Ensure the middle value is in vw, with a px intercept
   $minPx: _strip-unit($min-size);
