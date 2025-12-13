@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image';
-import styles from './homeHero2.module.scss';
+import styles from './homeHero.module.scss';
 import logomark from '/public/svgs/logomark.svg';
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
