@@ -145,7 +145,7 @@ const TestimonialsCarousel = ({ id }) => {
                     allowTouchMove={false}
                     className={`${styles.testimonialsSwiper} ${styles.linearEasing}`}
                     breakpoints={{
-                        0: { slidesPerView: 1.2 },
+                        0: { slidesPerView: 1.1 },
                         769: { slidesPerView: 1.5 },
                         1480: { slidesPerView: 2 },
                         1728: { slidesPerView: 2.2 },

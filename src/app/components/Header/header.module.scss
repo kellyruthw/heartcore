@@ -29,6 +29,8 @@
 
             @include mixins.respond(mobile) {
                 width: 140px;
+                opacity: 1;
+                transform: none;
             }
 
             &.visible {
@@ -55,11 +57,17 @@
 
             @include mixins.respond(mobile) {
                 padding: 1.5rem;
+                padding: 0;
+                background: transparent;
             }
 
             &:hover,
             &.active {
                 background-color: rgba(variables.$bg-primary, 1);
+
+                @include mixins.respond(mobile) {
+                    background: transparent;
+                }
 
                 .menuText {
                     color: variables.$color-text-primary;
@@ -69,6 +77,10 @@
                 .iconMenu {
                     .bar {
                         background: variables.$bg-tertiary;
+
+                        @include mixins.respond(mobile) {
+                            background: variables.$bg-primary;
+                        }
                     }
                 }
             }
@@ -79,9 +91,9 @@
                 color: variables.$color-text-inverse;
                 transition: .2s all;
 
-                 @include mixins.respond(mobile) {
-                        display: none;
-                    }
+                @include mixins.respond(mobile) {
+                    display: none;
+                }
             }
 
             .iconMenu {
@@ -100,6 +112,11 @@
                     background: variables.$bg-primary;
                     transition: all 0.3s;
                     position: relative;
+
+                    @include mixins.respond(mobile) {
+                        height: 2px;
+                    }
+
                 }
 
                 &.open .bar:first-child {
@@ -108,6 +125,10 @@
 
                 &.open .bar:last-child {
                     transform: rotate(-45deg) translate(4.5px, -4.5px);
+
+                    @include mixins.respond(mobile) {
+                        transform: rotate(-45deg) translate(3.5px, -3.5px);
+                    }
                 }
             }
         }
@@ -132,12 +153,16 @@
     pointer-events: none;
     opacity: 0;
     border-radius: 32px;
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 
     &.open {
         transform: translateY(120px);
         pointer-events: auto;
         opacity: 1;
+
+        @include mixins.respond(mobile) {
+            transform: translateY(80px);
+        }
     }
 
     nav ul {
@@ -159,9 +184,14 @@
                 color: variables.$color-text-primary;
                 position: relative;
 
+                @include mixins.respond(mobile) {
+                    font-size: 20px;
+                    font-weight: 500;
+                }
+
                 &:before {
                     content: '';
-                    width:0;
+                    width: 0;
                     height: 2px;
                     background: variables.$color-pink-500;
                     position: absolute;

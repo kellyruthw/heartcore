@@ -23,7 +23,7 @@ const ImageCopy = ({id}) => {
         gsap.timeline({
             scrollTrigger: {
                 trigger: section,
-                start: 'top 40%',
+                start: 'top 80%',
                 scrub: false,
             },
         })
@@ -41,7 +41,7 @@ const ImageCopy = ({id}) => {
                 scrollTrigger: {
                     trigger: section,
                     start: "top 80%",
-                    end: "top 30%",
+                    end: "top 50%",
                     scrub: true,
                 },
             }

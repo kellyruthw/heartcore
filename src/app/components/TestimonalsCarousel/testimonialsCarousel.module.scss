@@ -63,6 +63,7 @@
 
             @include mixins.respond(portrait) {
                 @include mixins.grid-col(4);
+                height: 100px;
             }
 
             &:after {
@@ -70,11 +71,18 @@
                 width: 1px;
                 height: calc(100% + 100px);
                 background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 52.4%, rgba(255, 255, 255, 0) 100%);
-
                 position: absolute;
                 right: 0;
                 top: -50px;
             }
+
+            @include mixins.respond(mobile) {
+                &:nth-child(3) {
+                    &:after {
+                        display: none;
+                    }
+                }
+            }   
 
             .imageContainer {
                 width: 100%;

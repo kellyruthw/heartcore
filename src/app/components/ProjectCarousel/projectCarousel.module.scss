@@ -96,7 +96,7 @@
                     gap: 2rem;
 
                     @include mixins.respond(tablet) {
-                      margin-top:1rem;
+                        margin-top: 1rem;
                     }
 
                     a {
@@ -191,6 +191,10 @@
 
                 @include mixins.respond(mobile) {
                     padding: 2.5rem 2rem;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: flex-start;
                 }
 
 
@@ -202,6 +206,7 @@
                     @include mixins.respond(mobile) {
                         flex-direction: column;
                         align-items: flex-start;
+                        gap: .5rem;
                     }
                 }
 
@@ -209,6 +214,12 @@
                     display: grid;
                     grid-template-columns: repeat(12, 1fr);
                     gap: variables.$gap-sm;
+
+                    @include mixins.respond(mobile) {
+                        display: flex;
+                        flex-direction: column;
+                        gap:.5rem;
+                    }
 
                     h3 {
                         @include mixins.display-md;
@@ -224,6 +235,7 @@
                             grid-column: 1 / span 12;
                             margin-top: 2rem;
                         }
+
                     }
 
                     p {
