@@ -17,6 +17,7 @@
     "nextjs": "^0.0.3",
     "react": "19.2.0",
     "react-dom": "19.2.0",
+    "react-google-recaptcha-v3": "^1.11.0",
     "react-hook-form": "^7.68.0",
     "resend": "^6.6.0",
     "sass": "^1.93.2",
