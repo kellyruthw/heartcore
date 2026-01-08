@@ -4,6 +4,7 @@ import Header from './components/Header/Header';
 import { ModalProvider } from './components/UI/Modal/ModalProvider';
 import Footer from './components/Footer/Footer';
 import Script from 'next/script';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { metadata as siteMetadata } from './data/metadata';
 
 export const metadata = siteMetadata;
@@ -50,6 +51,7 @@ export default function RootLayout({ children }) {
             {children}
             <Footer />
           </ModalProvider>
+          <SpeedInsights />
         </body>
       </html>
     </>
