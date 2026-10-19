@@ -17,7 +17,7 @@ export async function POST(req) {
       from: process.env.FROM_EMAIL,        // must be a verified sender on Resend
       to: process.env.TO_EMAIL,
       subject: `New Heartcore Studio Inquiry from ${name}`,
-      reply_to: email,
+      replyTo: email,
       text:
         `A new inquiry has been submitted:\n\n` +
         `Name: ${name}\nEmail: ${email}\nCompany: ${company || '-'}\nWebsite: ${website || '-'}\n\n` +
